@@ -23,7 +23,7 @@ class DocumentComponent extends Component {
                                 'insertdatetime table paste wordcount'
                             ],
                             toolbar:
-                                'undo redo | formatselect | bold italic backcolor | \
+                                'undo redo | formatselect | bold italic backcolor | link | \
                                 alignleft aligncenter alignright alignjustify | \
                                 bullist numlist outdent indent | removeformat | table'
                         }}

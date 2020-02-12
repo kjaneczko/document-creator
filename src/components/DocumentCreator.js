@@ -45,25 +45,20 @@ class DocumentCreator extends Component {
         const newComponentId = event.target.dataset.id;
         const oldComponents = this.state.components;
         const newComponents = [];
-        oldComponents.forEach(function(item, i) {
-            if(i < newComponentId) {
-                return newComponents.push(item);
-            }
-        });
+        for(let i = 0; i < newComponentId; ++i) {
+            newComponents.push(oldComponents[i]);
+        }
         newComponents.push({
             id: newComponentId,
             uuid: newComponentId + '-' + this.uuidv4(),
             content: '<p>[Added by button] Start writing!</p>'
         });
-        oldComponents.forEach(function(item, i) {
-            if(i >= newComponentId) {
-                item.id = Number(item.id) + 1;
-                item.uuid.replace(/[0-9]*/, item.id);
-                return newComponents.push(item);
-            }
-        });
+        for(let i = newComponentId; i < oldComponents.length; ++i) {
+            oldComponents[i].id = Number(oldComponents[i].id) + 1;
+            oldComponents[i].uuid = oldComponents[i].uuid.replace(/[0-9]*/, oldComponents[i].id);
+            newComponents.push(oldComponents[i]);
+        }
         this.setState(prevState => ({
-            ...prevState,
             components: newComponents
         }));
     };
