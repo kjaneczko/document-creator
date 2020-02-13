@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 
 class DocumentAddComponentButton extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return(
             <div className="row">

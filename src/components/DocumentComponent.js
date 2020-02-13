@@ -1,19 +1,17 @@
 import React, {Component} from 'react';
 import { Editor } from '@tinymce/tinymce-react';
-import DocumentAddComponentButton from './DocumentAddComponentButton';
+import DocumentChangeComponentOrderButtons from './DocumentChangeComponentOrderButtons';
 
 class DocumentComponent extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
+        console.log('this.props.component.content', this.props.component)
         return(
             <div className="row">
-                <div className="col-md-11 document-component">
+                <div className="col-sm-11 document-component">
                     <Editor
-                        initialValue={this.props.component.content}
-                        id = {this.props.component.uuid}
+                        initialValue="Write what you have in your soul!"
+                        value={this.props.component.content}
+                        id = {this.props.component.uid}
                         inline={true}
                         init={{
                             menubar: false,
@@ -23,16 +21,13 @@ class DocumentComponent extends Component {
                                 'insertdatetime table paste wordcount'
                             ],
                             toolbar:
-                                'undo redo | formatselect | bold italic backcolor | link | \
-                                alignleft aligncenter alignright alignjustify | \
-                                bullist numlist outdent indent | removeformat | table'
+                                'undo redo | formatselect | bold italic backcolor | link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | table'
                         }}
-                        onEditorChange={this.props.handleComponentChange}
+                        onFocusOut={this.props.handleComponentChange}
                     />
                 </div>
-                <div className="col-md-1">
-                    <button className="button-move-component" type="button">U</button>
-                    <button className="button-move-component" type="button">D</button>
+                <div className="col-sm-1">
+                    <DocumentChangeComponentOrderButtons handleChangeComponentOrder={this.props.handleChangeComponentOrder} componentId={this.props.component.id}/>
                 </div>
             </div>
          );
